@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Total Ads Data Line Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div style="width: 80%; margin: auto">
+      <canvas id="adsLineChart"></canvas>
+    </div>
+    <script>
+      // Data for the chart
+      const data = {
+        labels: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+        datasets: [
+          {
+            label: "Total Ads by Year",
+            data: [95, 244, 497, 1075, 3074, 14816, 50001],
+            borderColor: "rgba(54, 162, 235, 1)",
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderWidth: 2,
+            fill: true, // Makes the area under the line shaded
+            tension: 0.4, // Smoothens the curve
+            pointRadius: 5, // Point size
+            pointBackgroundColor: "rgba(54, 162, 235, 1)",
+          },
+        ],
+      };
+
+      // Configuration for the chart
+      const config = {
+        type: "line", // Line chart
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Total Ads Data by Year",
+            },
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: "Year",
+              },
+            },
+            y: {
+              title: {
+                display: true,
+                text: "Number of Ads",
+              },
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+
+      // Render the chart
+      const ctx = document.getElementById("adsLineChart").getContext("2d");
+      new Chart(ctx, config);
+    </script>
+  </body>
+</html>
