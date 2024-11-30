@@ -1,0 +1,615 @@
+<!--
+=========================================================
+* Material Dashboard 3 - v3.2.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard
+* Copyright 2024 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <title>
+    FaceBook Ads Scraper
+  </title>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .btn {
+      text-transform: none;
+    }
+  </style>
+</head>
+
+<body class="g-sidenav-show  bg-gray-100 ">
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <nav class="navbar navbar-main navbar-expand-lg shadow-none border-radius-xl bg-white px-3 py-2">
+      <div class="container-fluid">
+          <div class="d-flex justify-content-start align-items-center flex-nowrap gap-4 w-100">
+              
+              <!-- Media Type Filter -->
+              <div style="min-width: 200px;">
+                  <label class="mb-0 text-xs text-dark font-weight-bold">Media Type:</label>
+                  <select class="form-select form-select-sm mt-1 border" id="media_type">
+                      <option value="all" selected>All media types</option>
+                      <option value="image">Images - Images with little to no text</option>
+                      <option value="meme">Memes</option>
+                      <option value="image_and_meme">Images and memes</option>
+                      <option value="video">Videos - Keyword within video transcript</option>
+                      <option value="none">No image or video</option>
+                  </select>
+              </div>
+
+              <!-- Active Status Filter -->
+              <div style="min-width: 150px;">
+                  <label class="mb-0 text-xs text-dark font-weight-bold">Active Status:</label>
+                  <select class="form-select form-select-sm mt-1 border" id="active_status">
+                      <option value="all">Active and inactive</option>
+                      <option value="active" selected>Active ads</option>
+                      <option value="inactive">Inactive ads</option>
+                  </select>
+              </div>
+
+              <!-- Country Filter -->
+              <div style="min-width: 150px;">
+                  <label class="mb-0 text-xs text-dark font-weight-bold">Country:</label>
+                  <select class="form-select form-select-sm mt-1 border" id="country">
+                      <option value="ALL" selected>All Countries</option>
+                      <option value="BR">Brazil</option>
+                      <option value="IN">India</option>
+                      <option value="GB">United Kingdom</option>
+                      <option value="US">United States</option>
+                      <option value="CA">Canada</option>
+                      <option value="AR">Argentina</option>
+                      <option value="AU">Australia</option>
+                      <option value="AT">Austria</option>
+                      <option value="BE">Belgium</option>
+                      <option value="CL">Chile</option>
+                      <option value="CN">China</option>
+                      <option value="CO">Colombia</option>
+                      <option value="HR">Croatia</option>
+                      <option value="DK">Denmark</option>
+                      <option value="DO">Dominican Republic</option>
+                      <option value="EG">Egypt</option>
+                      <option value="FI">Finland</option>
+                      <option value="FR">France</option>
+                      <option value="DE">Germany</option>
+                      <option value="GR">Greece</option>
+                      <option value="HK">Hong Kong</option>
+                      <option value="ID">Indonesia</option>
+                      <option value="IE">Ireland</option>
+                      <option value="IL">Israel</option>
+                      <option value="IT">Italy</option>
+                      <option value="JP">Japan</option>
+                      <option value="JO">Jordan</option>
+                      <option value="KW">Kuwait</option>
+                      <option value="LB">Lebanon</option>
+                      <option value="MY">Malaysia</option>
+                      <option value="MX">Mexico</option>
+                      <option value="NL">Netherlands</option>
+                      <option value="NZ">New Zealand</option>
+                      <option value="NG">Nigeria</option>
+                      <option value="NO">Norway</option>
+                      <option value="PK">Pakistan</option>
+                      <option value="PA">Panama</option>
+                      <option value="PE">Peru</option>
+                      <option value="PH">Philippines</option>
+                      <option value="PL">Poland</option>
+                      <option value="RU">Russia</option>
+                      <option value="SA">Saudi Arabia</option>
+                      <option value="RS">Serbia</option>
+                      <option value="SG">Singapore</option>
+                      <option value="ZA">South Africa</option>
+                      <option value="KR">South Korea</option>
+                      <option value="ES">Spain</option>
+                      <option value="SE">Sweden</option>
+                      <option value="CH">Switzerland</option>
+                      <option value="TW">Taiwan</option>
+                      <option value="TH">Thailand</option>
+                      <option value="TR">Turkey</option>
+                      <option value="AE">United Arab Emirates</option>
+                      <option value="VE">Venezuela</option>
+                      <option value="PT">Portugal</option>
+                      <option value="LU">Luxembourg</option>
+                      <option value="BG">Bulgaria</option>
+                      <option value="CZ">Czech Republic</option>
+                      <option value="SI">Slovenia</option>
+                      <option value="IS">Iceland</option>
+                      <option value="SK">Slovakia</option>
+                      <option value="LT">Lithuania</option>
+                      <option value="TT">Trinidad and Tobago</option>
+                      <option value="BD">Bangladesh</option>
+                      <option value="LK">Sri Lanka</option>
+                      <option value="KE">Kenya</option>
+                      <option value="HU">Hungary</option>
+                      <option value="MA">Morocco</option>
+                      <option value="CY">Cyprus</option>
+                      <option value="JM">Jamaica</option>
+                      <option value="EC">Ecuador</option>
+                      <option value="RO">Romania</option>
+                      <option value="BO">Bolivia</option>
+                      <option value="GT">Guatemala</option>
+                      <option value="CR">Costa Rica</option>
+                      <option value="QA">Qatar</option>
+                      <option value="SV">El Salvador</option>
+                      <option value="HN">Honduras</option>
+                      <option value="NI">Nicaragua</option>
+                      <option value="PY">Paraguay</option>
+                      <option value="UY">Uruguay</option>
+                      <option value="PR">Puerto Rico</option>
+                      <option value="BA">Bosnia and Herzegovina</option>
+                      <option value="PS">Palestine</option>
+                      <option value="TN">Tunisia</option>
+                      <option value="BH">Bahrain</option>
+                      <option value="VN">Vietnam</option>
+                      <option value="GH">Ghana</option>
+                      <option value="MU">Mauritius</option>
+                      <option value="UA">Ukraine</option>
+                      <option value="MT">Malta</option>
+                      <option value="BS">Bahamas</option>
+                      <option value="MV">Maldives</option>
+                      <option value="OM">Oman</option>
+                      <option value="MK">North Macedonia</option>
+                      <option value="LV">Latvia</option>
+                      <option value="EE">Estonia</option>
+                      <option value="IQ">Iraq</option>
+                      <option value="DZ">Algeria</option>
+                      <option value="AL">Albania</option>
+                      <option value="NP">Nepal</option>
+                      <option value="MO">Macau</option>
+                      <option value="ME">Montenegro</option>
+                      <option value="SN">Senegal</option>
+                      <option value="GE">Georgia</option>
+                      <option value="BN">Brunei</option>
+                      <option value="UG">Uganda</option>
+                      <option value="GP">Guadeloupe</option>
+                      <option value="BB">Barbados</option>
+                      <option value="AZ">Azerbaijan</option>
+                      <option value="TZ">Tanzania</option>
+                      <option value="LY">Libya</option>
+                      <option value="MQ">Martinique</option>
+                      <option value="CM">Cameroon</option>
+                      <option value="BW">Botswana</option>
+                      <option value="ET">Ethiopia</option>
+                      <option value="KZ">Kazakhstan</option>
+                      <option value="NA">Namibia</option>
+                      <option value="MG">Madagascar</option>
+                      <option value="NC">New Caledonia</option>
+                      <option value="MD">Moldova</option>
+                      <option value="FJ">Fiji</option>
+                      <option value="BY">Belarus</option>
+                      <option value="JE">Jersey</option>
+                      <option value="GU">Guam</option>
+                      <option value="YE">Yemen</option>
+                      <option value="ZM">Zambia</option>
+                      <option value="IM">Isle of Man</option>
+                      <option value="HT">Haiti</option>
+                      <option value="KH">Cambodia</option>
+                      <option value="AW">Aruba</option>
+                      <option value="PF">French Polynesia</option>
+                      <option value="AF">Afghanistan</option>
+                      <option value="BM">Bermuda</option>
+                      <option value="GY">Guyana</option>
+                      <option value="AM">Armenia</option>
+                      <option value="MW">Malawi</option>
+                      <option value="AG">Antigua and Barbuda</option>
+                      <option value="RW">Rwanda</option>
+                      <option value="GG">Guernsey</option>
+                      <option value="GM">Gambia</option>
+                      <option value="FO">Faroe Islands</option>
+                      <option value="LC">Saint Lucia</option>
+                      <option value="KY">Cayman Islands</option>
+                      <option value="BJ">Benin</option>
+                      <option value="AD">Andorra</option>
+                      <option value="GD">Grenada</option>
+                      <option value="VI">U.S. Virgin Islands</option>
+                      <option value="BZ">Belize</option>
+                      <option value="VC">Saint Vincent and the Grenadines</option>
+                      <option value="MN">Mongolia</option>
+                      <option value="MZ">Mozambique</option>
+                      <option value="ML">Mali</option>
+                      <option value="AO">Angola</option>
+                      <option value="GF">French Guiana</option>
+                      <option value="UZ">Uzbekistan</option>
+                      <option value="DJ">Djibouti</option>
+                      <option value="BF">Burkina Faso</option>
+                      <option value="MC">Monaco</option>
+                      <option value="TG">Togo</option>
+                      <option value="GL">Greenland</option>
+                      <option value="GA">Gabon</option>
+                      <option value="GI">Gibraltar</option>
+                      <option value="CD">Congo (Kinshasa)</option>
+                      <option value="KG">Kyrgyzstan</option>
+                      <option value="PG">Papua New Guinea</option>
+                      <option value="BT">Bhutan</option>
+                      <option value="KN">Saint Kitts and Nevis</option>
+                      <option value="SZ">Eswatini</option>
+                      <option value="LS">Lesotho</option>
+                      <option value="LA">Laos</option>
+                      <option value="LI">Liechtenstein</option>
+                      <option value="MP">Northern Mariana Islands</option>
+                      <option value="SR">Suriname</option>
+                      <option value="SC">Seychelles</option>
+                      <option value="VG">British Virgin Islands</option>
+                      <option value="TC">Turks and Caicos Islands</option>
+                      <option value="DM">Dominica</option>
+                      <option value="MR">Mauritania</option>
+                      <option value="AX">Åland Islands</option>
+                      <option value="SM">San Marino</option>
+                      <option value="SL">Sierra Leone</option>
+                      <option value="NE">Niger</option>
+                      <option value="CG">Congo (Brazzaville)</option>
+                      <option value="AI">Anguilla</option>
+                      <option value="YT">Mayotte</option>
+                      <option value="CV">Cabo Verde</option>
+                      <option value="GN">Guinea</option>
+                      <option value="TM">Turkmenistan</option>
+                      <option value="BI">Burundi</option>
+                      <option value="TJ">Tajikistan</option>
+                      <option value="VU">Vanuatu</option>
+                      <option value="SB">Solomon Islands</option>
+                      <option value="ER">Eritrea</option>
+                      <option value="WS">Samoa</option>
+                      <option value="AS">American Samoa</option>
+                      <option value="FK">Falkland Islands</option>
+                      <option value="GQ">Equatorial Guinea</option>
+                      <option value="TO">Tonga</option>
+                      <option value="KM">Comoros</option>
+                      <option value="PW">Palau</option>
+                      <option value="FM">Micronesia</option>
+                      <option value="CF">Central African Republic</option>
+                      <option value="SO">Somalia</option>
+                      <option value="MH">Marshall Islands</option>
+                      <option value="VA">Vatican City</option>
+                      <option value="TD">Chad</option>
+                      <option value="KI">Kiribati</option>
+                      <option value="ST">São Tomé and Príncipe</option>
+                      <option value="TV">Tuvalu</option>
+                      <option value="NR">Nauru</option>
+                      <option value="RE">Réunion</option>
+                      <option value="LR">Liberia</option>
+                      <option value="ZW">Zimbabwe</option>
+                      <option value="CI">Côte d'Ivoire</option>
+                      <option value="MM">Myanmar</option>
+                      <option value="AN">Netherlands Antilles</option>
+                      <option value="AQ">Antarctica</option>
+                      <option value="BQ">Caribbean Netherlands</option>
+                      <option value="BV">Bouvet Island</option>
+                      <option value="IO">British Indian Ocean Territory</option>
+                      <option value="CX">Christmas Island</option>
+                      <option value="CC">Cocos (Keeling) Islands</option>
+                      <option value="CK">Cook Islands</option>
+                      <option value="CW">Curaçao</option>
+                      <option value="TF">French Southern Territories</option>
+                      <option value="GW">Guinea-Bissau</option>
+                      <option value="HM">Heard Island and McDonald Islands</option>
+                      <option value="XK">Kosovo</option>
+                      <option value="MS">Montserrat</option>
+                      <option value="NU">Niue</option>
+                      <option value="NF">Norfolk Island</option>
+                      <option value="PN">Pitcairn Islands</option>
+                      <option value="BL">Saint Barthélemy</option>
+                      <option value="SH">Saint Helena</option>
+                      <option value="MF">Saint Martin</option>
+                      <option value="PM">Saint Pierre and Miquelon</option>
+                      <option value="SX">Sint Maarten</option>
+                      <option value="GS">South Georgia and the South Sandwich Islands</option>
+                      <option value="SS">South Sudan</option>
+                      <option value="SJ">Svalbard and Jan Mayen</option>
+                      <option value="TL">Timor-Leste</option>
+                      <option value="TK">Tokelau</option>
+                      <option value="UM">United States Minor Outlying Islands</option>
+                      <option value="WF">Wallis and Futuna</option>
+                      <option value="EH">Western Sahara</option>
+                  </select>
+              </div>
+
+              <!-- Search Bar -->
+              <div class="ms-auto" style="min-width: 300px;">
+                <label class="mb-0 me-2 text-xs text-dark font-weight-bold">Search:</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control border" placeholder="Search..." id="search_bar">
+                </div>
+            </div>
+            <div>
+              <label class="mb-3 text-xs text-dark font-weight-bold">‎ </label>
+              <button class="btn btn-outline-primary btn-sm" type="button" style="width: 100%;" id="search_btn">
+                Search
+              </button>
+            </div>
+          </div>
+      </div>
+  </nav>
+      <!-- ads display starts here -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Ads</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Page Name</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>      
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Started Running On</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Platforms</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Call to Action</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ad Link</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ads-data">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Company information</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center justify-content-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Likes</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Website</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Profile</th>
+                    </tr>
+                  </thead>
+                  <!-- company-info goes here -->
+                  <tbody id="company-info">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer py-4  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                made with ❤️ by
+                <a href="https://www.reddit.com/user/RogeXOP/" class="font-weight-bold" target="_blank">Roger Rodrigues</a>
+                for better web scraping
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+</div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/material-dashboard.min.js?v=3.2.0"></script>
+  <script>
+    function createCompanyDataRows(data, tbodyId) {
+      // Get the <tbody> element by its ID
+      const tbody = document.getElementById(tbodyId);
+    
+      if (!tbody) {
+        console.error('Tbody element not found');
+        return;
+      }
+  
+      // Clear existing rows before appending new ones
+      tbody.innerHTML = ''; // Ensure it's cleared before new data is added
+    
+      // Loop through the data and dynamically create rows
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+    
+        // Construct the row's inner HTML based on the data
+        tr.innerHTML = `
+          <td>
+            <div class="d-flex px-2">
+              <div>
+                <img src="${item.profile_picture_uri}" class="avatar avatar-sm rounded-circle me-2" alt="${item.name}">
+              </div>
+              <div class="my-auto">
+                <h6 class="mb-0 text-sm">${item.name}</h6>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="text-sm font-weight-bold mb-0">${item.likes || '0'} Likes</p>
+          </td>
+          <td>
+            <span class="text-xs font-weight-bold">${item.category || 'N/A'}</span>
+          </td>
+          <td class="align-middle">
+            <a href="${item.website || null}" target="_blank" class="btn btn-link text-primary mb-0 text-sm">
+              Visit Website
+            </a>
+          </td>
+          <td class="align-middle">
+            <a href="${item.url}" target="_blank" class="btn btn-link text-secondary mb-0 text-sm">
+              View Profile
+            </a>
+          </td>
+        `;
+    
+        // Append the created row to the <tbody>
+        tbody.appendChild(tr);
+      });
+    }
+  
+    function createAdsInfoRows(dataArray, tbodyId) {
+      const tbody = document.getElementById(tbodyId);
+    
+      if (!tbody) {
+        console.error("Tbody element not found");
+        return;
+      }
+  
+      // Clear existing rows before appending new ones
+      tbody.innerHTML = '';
+    
+      // Loop through the data array and create rows
+      dataArray.forEach(data => {
+        const isActiveClass = data.is_active === "active" ? "bg-gradient-success" : "bg-gradient-secondary";
+        const isCTAnull = data["Call to Action:"] != null ? data["Call to Action:"] : "";
+    
+        // Generate platform icons
+        const platformIcons = data.Platforms?.length
+          ? data.Platforms.map(platform => {
+              switch (platform.toUpperCase()) {
+                case "FACEBOOK":
+                  return `<img src="../icons/facebook-grayscale-icon.png" alt="facebook-icon" class="me-1" style="width:20px; height:20px;">`;
+                case "INSTAGRAM":
+                  return `<img src="../icons/instagram-grayscale-icon.png" alt="instagram-icon" class="me-1" style="width:20px; height:20px;">`;
+                case "MESSENGER":
+                  return `<img src="../icons/messenger-grayscale-icon.png" alt="facebook-messenger-icon" class="me-1" style="width:20px; height:20px;">`;
+                case "AUDIENCE_NETWORK":
+                  return `<img src="../icons/audience-network-grayscale-icon.png" alt="audience-network-icon" class="me-1" style="width:20px; height:20px;">`;
+                default:
+                  return ''; 
+              }
+            }).join('')
+          : '-'; 
+    
+        const row = `
+          <tr>
+            <td>
+              <div class="d-flex px-2 py-1">
+                <div>
+                  <img src="${data.page_profile_picture_url}" class="avatar avatar-sm me-3 border-radius-lg" alt="${data['Page Name:']}">
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                  <h6 class="mb-0 text-sm">${data['Page Name:']}</h6>
+                  <p class="text-xs text-secondary mb-0">Ad ID: ${data['Ad ID']}</p>
+                </div>
+              </div>
+            </td>
+            <td class="align-middle text-center text-sm">
+              <span class="badge badge-sm ${isActiveClass}">${data.is_active}</span>
+            </td>
+            <td class="align-middle text-center">
+              <span class="text-secondary text-xs font-weight-bold">${data['Started running on ']}</span>
+            </td>
+            <td class="align-middle text-center">
+              ${platformIcons}
+            </td>
+            <td class="align-middle text-center">
+              <button class="text-secondary text-xs font-weight-bold btn btn-light" type="button">${isCTAnull}</button>
+            </td>
+            <td>
+              <a href="${data['Ad link']}" target="_blank" class="text-primary text-xs font-weight-bold">View Ad</a>
+            </td>
+          </tr>
+        `;
+    
+        // Append the row to the table body
+        tbody.innerHTML += row;
+      });
+    }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchBtn = document.getElementById("search_btn");
+      const clearCompanies = document.getElementById('company-info');
+      const clearAds = document.getElementById("ads-data");
+  
+      // Clear tables immediately on page load
+
+  
+      searchBtn.addEventListener("click", async (e) => {
+        clearCompanies.innerHTML = '';
+        clearAds.innerHTML = '';
+          console.log("clicked");
+          const query = document.getElementById("search_bar").value;
+          if (!query) {
+              return;
+          }
+          await sendData();
+      });
+    });
+  
+    async function sendData() {
+      const response = await fetch(`http://localhost:9000/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              active_status: document.getElementById('active_status').value,
+              ad_type: "all",
+              country: document.getElementById('country').value,
+              media_type: document.getElementById('media_type').value,
+              q: document.getElementById('search_bar').value,
+              search_type: "keyword_exact_phrase", // keyword_unordered
+          }),
+      });
+
+      const data = await response.json();
+  
+      if (!response.ok) {
+          console.error(`failure`);
+      }
+    
+      const { allAds, companyInfo } = data;
+
+      // Clear previous data and render new data
+      createCompanyDataRows(companyInfo, 'company-info');
+      createAdsInfoRows(allAds, "ads-data");
+      console.log(companyInfo)
+      console.log(`success`);
+    }
+  </script>
+  
+</body>
+
+</html>
