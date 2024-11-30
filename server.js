@@ -79,7 +79,7 @@ async function run(userQuery) {
   adsData = [];
   graphQLData = [];
   otherAds = [];
-  const browserObj = await puppeteerExtra.launch({ headless: false });
+  const browserObj = await puppeteerExtra.launch({ headless: true });
   const page = await browserObj.newPage();
 
   const url = queryURLBuilder(userQuery);
