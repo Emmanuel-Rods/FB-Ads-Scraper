@@ -322,7 +322,30 @@
                       <option value="EH">Western Sahara</option>
                   </select>
               </div>
-
+              <!-- category filter -->
+              <div style="min-width: 200px;">
+                <label class="mb-0 text-xs text-dark font-weight-bold">Product Category:</label>
+                <select class="form-select form-select-sm mt-1 border" id="product_category">
+                  <option value="" selected>Select a category</option>
+                  <option value="Fashion and Apparel">Fashion and Apparel</option>
+                  <option value="Beauty and Personal Care">Beauty and Personal Care</option>
+                  <option value="Electronics and Gadgets">Electronics and Gadgets</option>
+                  <option value="Home and Kitchen">Home and Kitchen</option>
+                  <option value="Health and Fitness">Health and Fitness</option>
+                  <option value="Car Accessories">Car Accessories</option>
+                  <option value="Toys and Games">Toys and Games</option>
+                  <option value="Pet Products">Pet Products</option>
+                  <option value="Books and Stationery">Books and Stationery</option>
+                  <option value="Sports and Outdoor Gear">Sports and Outdoor Gear</option>
+                  <option value="Baby Products">Baby Products</option>
+                  <option value="Food and Beverages">Food and Beverages</option>
+                  <option value="Art and Craft Supplies">Art and Craft Supplies</option>
+                  <option value="Automotive Parts">Automotive Parts</option>
+                  <option value="Tech Accessories">Tech Accessories</option>
+                  <option value="Hobbies and Collectibles">Hobbies and Collectibles</option>
+                </select>
+              </div>
+              
               <!-- Search Bar -->
               <div class="ms-auto" style="min-width: 300px;">
                 <label class="mb-0 me-2 text-xs text-dark font-weight-bold">Search:</label>
@@ -571,7 +594,9 @@
         clearAds.innerHTML = '';
           console.log("clicked");
           const query = document.getElementById("search_bar").value;
-          if (!query) {
+          const category = document.getElementById("product_category").value;
+          if (!query && !category) {
+            alert(`Sending no data to there server : ${query}`)
               return;
           }
           await sendData();
@@ -579,7 +604,7 @@
     });
   
     async function sendData() {
-      const response = await fetch(`http://localhost:9000/`, {
+        const response = await fetch(`http://localhost:9000/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -590,10 +615,17 @@
               country: document.getElementById('country').value,
               media_type: document.getElementById('media_type').value,
               q: document.getElementById('search_bar').value,
-              search_type: "keyword_exact_phrase", // keyword_unordered
+              search_type: "keyword_exact_phrase", // keyword_unordered,
+              category : document.getElementById('product_category').value
           }),
       });
 
+      // }
+      // catch(error){
+      //   window.alert(`Failed to Send request to Backend , Make sure the Server is still active`)
+      // }
+       
+      
       const data = await response.json();
   
       if (!response.ok) {
@@ -606,6 +638,7 @@
       createCompanyDataRows(companyInfo, 'company-info');
       createAdsInfoRows(allAds, "ads-data");
       console.log(companyInfo)
+      console.log(`all ads : ${allAds.length}`)
       console.log(`success`);
     }
   </script>
